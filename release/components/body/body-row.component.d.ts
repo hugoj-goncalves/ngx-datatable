@@ -20,6 +20,7 @@ export declare class DataTableBodyRowComponent implements DoCheck {
     rowHeight: number;
     readonly columnsTotalWidths: string;
     activate: EventEmitter<any>;
+    deactivate: EventEmitter<any>;
     treeAction: EventEmitter<any>;
     _element: any;
     _columnGroupWidths: any;
@@ -28,9 +29,7 @@ export declare class DataTableBodyRowComponent implements DoCheck {
     _columns: any[];
     _innerWidth: number;
     _groupStyles: {
-        left: {};
-        center: {};
-        right: {};
+        [prop: string]: {};
     };
     private _rowDiffer;
     constructor(differs: KeyValueDiffers, scrollbarHelper: ScrollbarHelper, cd: ChangeDetectorRef, element: ElementRef);
@@ -42,8 +41,10 @@ export declare class DataTableBodyRowComponent implements DoCheck {
         width: string;
     };
     onActivate(event: any, index: number): void;
+    onDeactivate(event: any, index: number): void;
     onKeyDown(event: KeyboardEvent): void;
     onMouseenter(event: any): void;
+    onMouseleave(event: any): void;
     recalculateColumns(val?: any[]): void;
     onTreeAction(): void;
 }

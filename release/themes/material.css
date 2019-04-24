@@ -192,13 +192,13 @@
       margin: 0 10px; }
       .ngx-datatable.material .datatable-footer .datatable-pager li {
         vertical-align: middle; }
-        .ngx-datatable.material .datatable-footer .datatable-pager li.disabled a {
+        .ngx-datatable.material .datatable-footer .datatable-pager li.disabled span {
           color: rgba(0, 0, 0, 0.26) !important;
           background-color: transparent !important; }
-        .ngx-datatable.material .datatable-footer .datatable-pager li.active a {
+        .ngx-datatable.material .datatable-footer .datatable-pager li.active span {
           background-color: rgba(158, 158, 158, 0.2);
           font-weight: bold; }
-      .ngx-datatable.material .datatable-footer .datatable-pager a {
+      .ngx-datatable.material .datatable-footer .datatable-pager span {
         height: 22px;
         min-width: 24px;
         line-height: 22px;
@@ -210,7 +210,7 @@
         color: rgba(0, 0, 0, 0.54);
         text-decoration: none;
         vertical-align: bottom; }
-        .ngx-datatable.material .datatable-footer .datatable-pager a:hover {
+        .ngx-datatable.material .datatable-footer .datatable-pager span:hover {
           color: rgba(0, 0, 0, 0.75);
           background-color: rgba(158, 158, 158, 0.2); }
       .ngx-datatable.material .datatable-footer .datatable-pager .datatable-icon-left,

@@ -16,10 +16,12 @@ export declare class DataTableSelectionComponent {
     rowIdentity: any;
     selectCheck: any;
     activate: EventEmitter<any>;
+    deactivate: EventEmitter<any>;
     select: EventEmitter<any>;
     prevIndex: number;
     selectRow(event: KeyboardEvent | MouseEvent, index: number, row: any): void;
     onActivate(model: Model, index: number): void;
+    onDeactivate(model: Model): void;
     onKeyboardFocus(model: Model): void;
     focusRow(rowElement: any, keyCode: number): void;
     getPrevNextRow(rowElement: any, keyCode: number): any;

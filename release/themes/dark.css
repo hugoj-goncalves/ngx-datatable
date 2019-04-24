@@ -44,11 +44,11 @@
       vertical-align: top; }
       .ngx-datatable.dark .datatable-footer .datatable-pager ul li {
         margin: 10px 0px; }
-        .ngx-datatable.dark .datatable-footer .datatable-pager ul li:not(.disabled).active a,
-        .ngx-datatable.dark .datatable-footer .datatable-pager ul li:not(.disabled):hover a {
+        .ngx-datatable.dark .datatable-footer .datatable-pager ul li:not(.disabled).active span,
+        .ngx-datatable.dark .datatable-footer .datatable-pager ul li:not(.disabled):hover span {
           background-color: #455066;
           font-weight: bold; }
-      .ngx-datatable.dark .datatable-footer .datatable-pager a {
+      .ngx-datatable.dark .datatable-footer .datatable-pager span {
         height: 22px;
         min-width: 24px;
         line-height: 22px;

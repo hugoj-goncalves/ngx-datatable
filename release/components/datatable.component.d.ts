@@ -250,6 +250,10 @@ export declare class DatatableComponent implements OnInit, DoCheck, AfterViewIni
      */
     activate: EventEmitter<any>;
     /**
+     * A row was left with the mouse cursor.
+     */
+    deactivate: EventEmitter<any>;
+    /**
      * A cell or row was selected.
      */
     select: EventEmitter<any>;

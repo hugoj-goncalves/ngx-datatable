@@ -41,10 +41,10 @@ bootstrap table theme
       vertical-align: top; }
       .ngx-datatable.bootstrap .datatable-footer .datatable-pager ul li {
         margin: 10px 0px; }
-        .ngx-datatable.bootstrap .datatable-footer .datatable-pager ul li:not(.disabled).active a, .ngx-datatable.bootstrap .datatable-footer .datatable-pager ul li:not(.disabled):hover a {
+        .ngx-datatable.bootstrap .datatable-footer .datatable-pager ul li:not(.disabled).active span, .ngx-datatable.bootstrap .datatable-footer .datatable-pager ul li:not(.disabled):hover span {
           background-color: #545454;
           font-weight: bold; }
-      .ngx-datatable.bootstrap .datatable-footer .datatable-pager a {
+      .ngx-datatable.bootstrap .datatable-footer .datatable-pager span {
         height: 22px;
         min-width: 24px;
         line-height: 22px;

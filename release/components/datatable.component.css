@@ -184,10 +184,10 @@
         margin: 0;
         display: inline-block;
         list-style: none; }
-      .ngx-datatable .datatable-footer .datatable-pager .pager li, .ngx-datatable .datatable-footer .datatable-pager .pager li a {
+      .ngx-datatable .datatable-footer .datatable-pager .pager li, .ngx-datatable .datatable-footer .datatable-pager .pager li span {
         outline: none; }
-      .ngx-datatable .datatable-footer .datatable-pager .pager li a {
+      .ngx-datatable .datatable-footer .datatable-pager .pager li span {
         cursor: pointer;
         display: inline-block; }
-      .ngx-datatable .datatable-footer .datatable-pager .pager li.disabled a {
+      .ngx-datatable .datatable-footer .datatable-pager .pager li.disabled span {
         cursor: not-allowed; }

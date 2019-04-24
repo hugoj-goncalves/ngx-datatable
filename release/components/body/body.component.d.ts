@@ -22,12 +22,12 @@ export declare class DataTableBodyComponent implements OnInit, OnDestroy {
     rowClass: any;
     groupedRows: any;
     groupExpansionDefault: boolean;
-    innerWidth: number;
     groupRowsBy: string;
     virtualization: boolean;
     summaryRow: boolean;
     summaryPosition: string;
     summaryHeight: number;
+    innerWidth: number;
     pageSize: number;
     rows: any[];
     columns: any[];
@@ -38,6 +38,7 @@ export declare class DataTableBodyComponent implements OnInit, OnDestroy {
     scroll: EventEmitter<any>;
     page: EventEmitter<any>;
     activate: EventEmitter<any>;
+    deactivate: EventEmitter<any>;
     select: EventEmitter<any>;
     detailToggle: EventEmitter<any>;
     rowContextmenu: EventEmitter<{
@@ -60,8 +61,7 @@ export declare class DataTableBodyComponent implements OnInit, OnDestroy {
     temp: any[];
     offsetY: number;
     indexes: any;
-    columnGroupWidths: any;
-    columnGroupWidthsWithoutGroup: any;
+    _columnGroupWidths: any;
     rowTrackingFn: any;
     listener: any;
     rowIndexes: any;
@@ -72,6 +72,7 @@ export declare class DataTableBodyComponent implements OnInit, OnDestroy {
     _rowCount: number;
     _offset: number;
     _pageSize: number;
+    _innerWidth: number;
     /**
      * Creates an instance of DataTableBodyComponent.
      */
@@ -101,6 +102,10 @@ export declare class DataTableBodyComponent implements OnInit, OnDestroy {
      * Updates the rows in the view port
      */
     updateRows(): void;
+    /**
+     * Updates the column group data
+     */
+    recalculateColumnGroups(): void;
     /**
      * Get the row height
      */
