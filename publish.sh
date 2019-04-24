@@ -1,7 +1,7 @@
 #!/bin/bash
 
 function build {
-  npm run release
+  npm run package
 }
 
 function updateVersion {
@@ -24,7 +24,6 @@ if [ $? -eq 1 ]; then
 fi
 
 git pull origin master
-npm install
 updateVersion
 build
 
