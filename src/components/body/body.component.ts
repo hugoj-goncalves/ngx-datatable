@@ -29,7 +29,7 @@ import { MouseEvent } from '../../events';
         [scrollbarV]="scrollbarV"
         [scrollbarH]="scrollbarH"
         [scrollHeight]="scrollHeight"
-        [scrollWidth]="columnGroupWidths?.total"
+        [scrollWidth]="_columnGroupWidths?.total"
         (scroll)="onBodyScroll($event)">
         <datatable-summary-row
           *ngIf="summaryRow && summaryPosition === 'top'"
@@ -131,12 +131,22 @@ export class DataTableBodyComponent implements OnInit, OnDestroy {
   @Input() rowClass: any;
   @Input() groupedRows: any;
   @Input() groupExpansionDefault: boolean;
-  @Input() innerWidth: number;
   @Input() groupRowsBy: string;
   @Input() virtualization: boolean;
   @Input() summaryRow: boolean;
   @Input() summaryPosition: string;
   @Input() summaryHeight: number;
+
+  @Input() set innerWidth(val: number) {
+    this._innerWidth = val;
+    if (this.columns) {
+      this.recalculateColumnGroups();
+    }
+  }
+
+  get innerWidth(): number {
+    return this._innerWidth;
+  }
 
   @Input() set pageSize(val: number) {
     this._pageSize = val;
@@ -159,8 +169,7 @@ export class DataTableBodyComponent implements OnInit, OnDestroy {
 
   @Input() set columns(val: any[]) {
     this._columns = val;
-    const colsByPin = columnsByPin(val);
-    this.columnGroupWidths = columnGroupWidths(colsByPin, val);
+    this.recalculateColumnGroups();
   }
 
   get columns(): any[] {
@@ -245,8 +254,7 @@ export class DataTableBodyComponent implements OnInit, OnDestroy {
   temp: any[] = [];
   offsetY: number = 0;
   indexes: any = {};
-  columnGroupWidths: any;
-  columnGroupWidthsWithoutGroup: any;
+  _columnGroupWidths: any;
   rowTrackingFn: any;
   listener: any;
   rowIndexes: any = new Map();
@@ -258,6 +266,7 @@ export class DataTableBodyComponent implements OnInit, OnDestroy {
   _rowCount: number;
   _offset: number;
   _pageSize: number;
+  _innerWidth: number;
 
   /**
    * Creates an instance of DataTableBodyComponent.
@@ -425,6 +434,14 @@ export class DataTableBodyComponent implements OnInit, OnDestroy {
   }
 
   /**
+   * Updates the column group data
+   */
+  recalculateColumnGroups(): void {
+    const colByPin = columnsByPin(this._columns);
+    this._columnGroupWidths = columnGroupWidths(colByPin, this._columns);
+  }
+
+  /**
    * Get the row height
    */
   getRowHeight(row: any): number {
@@ -500,7 +517,7 @@ export class DataTableBodyComponent implements OnInit, OnDestroy {
 
     // only add styles for the group if there is a group
     if (this.groupedRows) {
-      styles['width'] = this.columnGroupWidths.total;
+      styles['width'] = this._columnGroupWidths.total;
     }
 
     if (this.scrollbarV && this.virtualization) {
@@ -707,7 +724,7 @@ export class DataTableBodyComponent implements OnInit, OnDestroy {
    * Gets the row pinning group styles
    */
   stylesByGroup(group: string) {
-    const widths = this.columnGroupWidths;
+    const widths = this._columnGroupWidths;
     const offsetX = this.offsetX;
 
     const styles = {
