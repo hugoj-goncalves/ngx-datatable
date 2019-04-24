@@ -1,6 +1,6 @@
 {
   "name": "@eklesia/ngx-datatable",
-  "version": "14.1.0",
+  "version": "14.1.1",
   "description": "ngx-datatable is a Angular2+ table grid component for presenting large and complex data.",
   "main": "release/index.js",
   "typings": "release/index.d.ts",
@@ -11,9 +11,6 @@
     "watch:test": "npm run test -- --auto-watch --no-single-run",
     "watch:test-linux": "npm run test-linux -- --auto-watch --no-single-run",
     "lint": "tslint ./src/**/*.ts ./test/**/*.ts",
-    "version": "npm run release",
-    "preversion": "git status",
-    "postversion": "git push && git push --tags",
     "clean": "npm-run-all -p clean:*",
     "clean:build": "rimraf build",
     "clean:dist": "rimraf dist",

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 function build {
-  npm run package
+  npm run release
 }
 
 function updateVersion {
@@ -23,10 +23,9 @@ if [ $? -eq 1 ]; then
     exit 1
 fi
 
-# git pull origin master
-# npm install
+git pull origin master
+npm install
 updateVersion
-exit 1
 build
 
 git status | grep 'nothing to commit'
