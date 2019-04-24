@@ -12,7 +12,7 @@
     "watch:test-linux": "npm run test-linux -- --auto-watch --no-single-run",
     "lint": "tslint ./src/**/*.ts ./test/**/*.ts",
     "version": "npm run release",
-    "preversion": "npm test",
+    "preversion": "git status",
     "postversion": "git push && git push --tags",
     "clean": "npm-run-all -p clean:*",
     "clean:build": "rimraf build",
