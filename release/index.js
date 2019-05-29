@@ -1,18 +1,18 @@
 /**
- * angular2-data-table v"14.1.3" (https://github.com/swimlane/angular2-data-table)
+ * angular2-data-table v"15.0.0" (https://github.com/swimlane/angular2-data-table)
  * Copyright 2016
  * Licensed under MIT
  */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("@angular/common"), require("@angular/core"), require("@angular/platform-browser"), require("rxjs"), require("rxjs/operators"));
+		module.exports = factory(require("@angular/common"), require("@angular/core"), require("rxjs"), require("rxjs/operators"));
 	else if(typeof define === 'function' && define.amd)
-		define("ngxDatatable", ["@angular/common", "@angular/core", "@angular/platform-browser", "rxjs", "rxjs/operators"], factory);
+		define("ngxDatatable", ["@angular/common", "@angular/core", "rxjs", "rxjs/operators"], factory);
 	else if(typeof exports === 'object')
-		exports["ngxDatatable"] = factory(require("@angular/common"), require("@angular/core"), require("@angular/platform-browser"), require("rxjs"), require("rxjs/operators"));
+		exports["ngxDatatable"] = factory(require("@angular/common"), require("@angular/core"), require("rxjs"), require("rxjs/operators"));
 	else
-		root["ngxDatatable"] = factory(root["@angular/common"], root["@angular/core"], root["@angular/platform-browser"], root["rxjs"], root["rxjs/operators"]);
-})(typeof self !== 'undefined' ? self : this, function(__WEBPACK_EXTERNAL_MODULE__angular_common__, __WEBPACK_EXTERNAL_MODULE__angular_core__, __WEBPACK_EXTERNAL_MODULE__angular_platform_browser__, __WEBPACK_EXTERNAL_MODULE_rxjs__, __WEBPACK_EXTERNAL_MODULE_rxjs_operators__) {
+		root["ngxDatatable"] = factory(root["@angular/common"], root["@angular/core"], root["rxjs"], root["rxjs/operators"]);
+})(typeof self !== 'undefined' ? self : this, function(__WEBPACK_EXTERNAL_MODULE__angular_common__, __WEBPACK_EXTERNAL_MODULE__angular_core__, __WEBPACK_EXTERNAL_MODULE_rxjs__, __WEBPACK_EXTERNAL_MODULE_rxjs_operators__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -1372,10 +1372,6 @@ var TreeNode = /** @class */ (function () {
 
 
 
-// EXTERNAL MODULE: external "@angular/platform-browser"
-var platform_browser_ = __webpack_require__("@angular/platform-browser");
-var platform_browser__default = /*#__PURE__*/__webpack_require__.n(platform_browser_);
-
 // CONCATENATED MODULE: ./src/services/scrollbar-helper.service.ts
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1417,7 +1413,7 @@ var scrollbar_helper_service_ScrollbarHelper = /** @class */ (function () {
     };
     ScrollbarHelper = __decorate([
         Object(core_["Injectable"])(),
-        __param(0, Object(core_["Inject"])(platform_browser_["DOCUMENT"])),
+        __param(0, Object(core_["Inject"])(common_["DOCUMENT"])),
         __metadata("design:paramtypes", [Object])
     ], ScrollbarHelper);
     return ScrollbarHelper;
@@ -1643,14 +1639,14 @@ var body_component_DataTableBodyComponent = /** @class */ (function () {
         };
         // declare fn here so we can get access to the `this` property
         this.rowTrackingFn = function (index, row) {
-            var idx = this.getRowIndex(row);
-            if (this.trackByProp) {
-                return idx + "-" + this.trackByProp;
+            var idx = _this.getRowIndex(row);
+            if (_this.trackByProp) {
+                return row[_this.trackByProp];
             }
             else {
                 return idx;
             }
-        }.bind(this);
+        };
     }
     Object.defineProperty(DataTableBodyComponent.prototype, "innerWidth", {
         get: function () {
@@ -1781,8 +1777,7 @@ var body_component_DataTableBodyComponent = /** @class */ (function () {
     DataTableBodyComponent.prototype.ngOnInit = function () {
         var _this = this;
         if (this.rowDetail) {
-            this.listener = this.rowDetail.toggle
-                .subscribe(function (_a) {
+            this.listener = this.rowDetail.toggle.subscribe(function (_a) {
                 var type = _a.type, value = _a.value;
                 if (type === 'row')
                     _this.toggleRowExpansion(value);
@@ -1796,8 +1791,7 @@ var body_component_DataTableBodyComponent = /** @class */ (function () {
             });
         }
         if (this.groupHeader) {
-            this.listener = this.groupHeader.toggle
-                .subscribe(function (_a) {
+            this.listener = this.groupHeader.toggle.subscribe(function (_a) {
                 var type = _a.type, value = _a.value;
                 if (type === 'group')
                     _this.toggleRowExpansion(value);
@@ -2022,7 +2016,7 @@ var body_component_DataTableBodyComponent = /** @class */ (function () {
      */
     DataTableBodyComponent.prototype.hideIndicator = function () {
         var _this = this;
-        setTimeout(function () { return _this.loadingIndicator = false; }, 500);
+        setTimeout(function () { return (_this.loadingIndicator = false); }, 500);
     };
     /**
      * Updates the index of the rows in the viewport
@@ -2052,7 +2046,7 @@ var body_component_DataTableBodyComponent = /** @class */ (function () {
             if (!this.externalPaging) {
                 first = Math.max(this.offset * this.pageSize, 0);
             }
-            last = Math.min((first + this.pageSize), this.rowCount);
+            last = Math.min(first + this.pageSize, this.rowCount);
         }
         this.indexes = { first: first, last: last };
     };
@@ -2090,7 +2084,9 @@ var body_component_DataTableBodyComponent = /** @class */ (function () {
         var viewPortFirstRowIndex = this.indexes.first;
         if (this.scrollbarV && this.virtualization) {
             var offsetScroll = this.rowHeightsCache.query(viewPortFirstRowIndex - 1);
-            return offsetScroll <= this.offsetY ? viewPortFirstRowIndex - 1 : viewPortFirstRowIndex;
+            return offsetScroll <= this.offsetY
+                ? viewPortFirstRowIndex - 1
+                : viewPortFirstRowIndex;
         }
         return viewPortFirstRowIndex;
     };
@@ -2365,13 +2361,13 @@ var body_component_DataTableBodyComponent = /** @class */ (function () {
         body_component___metadata("design:type", core_["EventEmitter"])
     ], DataTableBodyComponent.prototype, "treeAction", void 0);
     body_component___decorate([
-        Object(core_["ViewChild"])(scroller_component_ScrollerComponent),
+        Object(core_["ViewChild"])(scroller_component_ScrollerComponent, { static: true }),
         body_component___metadata("design:type", scroller_component_ScrollerComponent)
     ], DataTableBodyComponent.prototype, "scroller", void 0);
     DataTableBodyComponent = body_component___decorate([
         Object(core_["Component"])({
             selector: 'datatable-body',
-            template: "\n    <datatable-selection\n      #selector\n      [selected]=\"selected\"\n      [rows]=\"rows\"\n      [selectCheck]=\"selectCheck\"\n      [selectEnabled]=\"selectEnabled\"\n      [selectionType]=\"selectionType\"\n      [rowIdentity]=\"rowIdentity\"\n      (select)=\"select.emit($event)\"\n      (activate)=\"activate.emit($event)\"\n      (deactivate)=\"deactivate.emit($event)\">\n      <datatable-progress\n        *ngIf=\"loadingIndicator\">\n      </datatable-progress>\n      <datatable-scroller\n        *ngIf=\"rows?.length\"\n        [scrollbarV]=\"scrollbarV\"\n        [scrollbarH]=\"scrollbarH\"\n        [scrollHeight]=\"scrollHeight\"\n        [scrollWidth]=\"_columnGroupWidths?.total\"\n        (scroll)=\"onBodyScroll($event)\">\n        <datatable-summary-row\n          *ngIf=\"summaryRow && summaryPosition === 'top'\"\n          [rowHeight]=\"summaryHeight\"\n          [offsetX]=\"offsetX\"\n          [innerWidth]=\"innerWidth\"\n          [rows]=\"rows\"\n          [columns]=\"columns\">\n        </datatable-summary-row>\n        <datatable-row-wrapper\n          [groupedRows]=\"groupedRows\"\n          *ngFor=\"let group of temp; let i = index; trackBy: rowTrackingFn;\"\n          [innerWidth]=\"innerWidth\"\n          [ngStyle]=\"getRowsStyles(group)\"\n          [rowDetail]=\"rowDetail\"\n          [groupHeader]=\"groupHeader\"\n          [offsetX]=\"offsetX\"\n          [detailRowHeight]=\"getDetailRowHeight(group[i],i)\"\n          [row]=\"group\"\n          [expanded]=\"getRowExpanded(group)\"\n          [rowIndex]=\"getRowIndex(group[i])\"\n          (rowContextmenu)=\"rowContextmenu.emit($event)\">\n          <datatable-body-row\n            *ngIf=\"!groupedRows; else groupedRowsTemplate\"\n            tabindex=\"-1\"\n            [isSelected]=\"selector.getRowSelected(group)\"\n            [innerWidth]=\"innerWidth\"\n            [offsetX]=\"offsetX\"\n            [columns]=\"columns\"\n            [rowHeight]=\"getRowHeight(group)\"\n            [row]=\"group\"\n            [rowIndex]=\"getRowIndex(group)\"\n            [expanded]=\"getRowExpanded(group)\"\n            [rowClass]=\"rowClass\"\n            [displayCheck]=\"displayCheck\"\n            [treeStatus]=\"group.treeStatus\"\n            (treeAction)=\"onTreeAction(group)\"\n            (activate)=\"selector.onActivate($event, indexes.first + i)\"\n            (deactivate)=\"selector.onDeactivate($event, indexes.first + i)\">\n          </datatable-body-row>\n          <ng-template #groupedRowsTemplate>\n            <datatable-body-row\n              *ngFor=\"let row of group.value; let i = index; trackBy: rowTrackingFn;\"\n              tabindex=\"-1\"\n              [isSelected]=\"selector.getRowSelected(row)\"\n              [innerWidth]=\"innerWidth\"\n              [offsetX]=\"offsetX\"\n              [columns]=\"columns\"\n              [rowHeight]=\"getRowHeight(row)\"\n              [row]=\"row\"\n              [group]=\"group.value\"\n              [rowIndex]=\"getRowIndex(row)\"\n              [expanded]=\"getRowExpanded(row)\"\n              [rowClass]=\"rowClass\"\n              (activate)=\"selector.onActivate($event, i)\"\n              (deactivate)=\"selector.onDeactivate($event, i)\">\n            </datatable-body-row>\n          </ng-template>\n        </datatable-row-wrapper>\n        <datatable-summary-row\n          *ngIf=\"summaryRow && summaryPosition === 'bottom'\"\n          [ngStyle]=\"getBottomSummaryRowStyles()\"\n          [rowHeight]=\"summaryHeight\"\n          [offsetX]=\"offsetX\"\n          [innerWidth]=\"innerWidth\"\n          [rows]=\"rows\"\n          [columns]=\"columns\">\n        </datatable-summary-row>\n      </datatable-scroller>\n      <div\n        class=\"empty-row\"\n        *ngIf=\"!rows?.length && !loadingIndicator\"\n        [innerHTML]=\"emptyMessage\">\n      </div>\n    </datatable-selection>\n  ",
+            template: "\n    <datatable-selection\n      #selector\n      [selected]=\"selected\"\n      [rows]=\"rows\"\n      [selectCheck]=\"selectCheck\"\n      [selectEnabled]=\"selectEnabled\"\n      [selectionType]=\"selectionType\"\n      [rowIdentity]=\"rowIdentity\"\n      (select)=\"select.emit($event)\"\n      (activate)=\"activate.emit($event)\"\n      (deactivate)=\"deactivate.emit($event)\">\n      <datatable-progress\n        *ngIf=\"loadingIndicator\">\n      </datatable-progress>\n      <datatable-scroller\n        *ngIf=\"rows?.length\"\n        [scrollbarV]=\"scrollbarV\"\n        [scrollbarH]=\"scrollbarH\"\n        [scrollHeight]=\"scrollHeight\"\n        [scrollWidth]=\"_columnGroupWidths?.total\"\n        (scroll)=\"onBodyScroll($event)\"\n      >\n        <datatable-summary-row\n          *ngIf=\"summaryRow && summaryPosition === 'top'\"\n          [rowHeight]=\"summaryHeight\"\n          [offsetX]=\"offsetX\"\n          [innerWidth]=\"innerWidth\"\n          [rows]=\"rows\"\n          [columns]=\"columns\"\n        >\n        </datatable-summary-row>\n        <datatable-row-wrapper\n          [groupedRows]=\"groupedRows\"\n          *ngFor=\"let group of temp; let i = index; trackBy: rowTrackingFn\"\n          [innerWidth]=\"innerWidth\"\n          [ngStyle]=\"getRowsStyles(group)\"\n          [rowDetail]=\"rowDetail\"\n          [groupHeader]=\"groupHeader\"\n          [offsetX]=\"offsetX\"\n          [detailRowHeight]=\"getDetailRowHeight(group[i],i)\"\n          [row]=\"group\"\n          [expanded]=\"getRowExpanded(group)\"\n          [rowIndex]=\"getRowIndex(group[i])\"\n          (rowContextmenu)=\"rowContextmenu.emit($event)\"\n        >\n          <datatable-body-row\n            *ngIf=\"!groupedRows; else groupedRowsTemplate\"\n            tabindex=\"-1\"\n            [isSelected]=\"selector.getRowSelected(group)\"\n            [innerWidth]=\"innerWidth\"\n            [offsetX]=\"offsetX\"\n            [columns]=\"columns\"\n            [rowHeight]=\"getRowHeight(group)\"\n            [row]=\"group\"\n            [rowIndex]=\"getRowIndex(group)\"\n            [expanded]=\"getRowExpanded(group)\"\n            [rowClass]=\"rowClass\"\n            [displayCheck]=\"displayCheck\"\n            [treeStatus]=\"group.treeStatus\"\n            (treeAction)=\"onTreeAction(group)\"\n            (activate)=\"selector.onActivate($event, indexes.first + i)\"\n            (deactivate)=\"selector.onDeactivate($event, indexes.first + i)\">\n          </datatable-body-row>\n          <ng-template #groupedRowsTemplate>\n            <datatable-body-row\n              *ngFor=\"\n                let row of group.value;\n                let i = index;\n                trackBy: rowTrackingFn\n              \"\n              tabindex=\"-1\"\n              [isSelected]=\"selector.getRowSelected(row)\"\n              [innerWidth]=\"innerWidth\"\n              [offsetX]=\"offsetX\"\n              [columns]=\"columns\"\n              [rowHeight]=\"getRowHeight(row)\"\n              [row]=\"row\"\n              [group]=\"group.value\"\n              [rowIndex]=\"getRowIndex(row)\"\n              [expanded]=\"getRowExpanded(row)\"\n              [rowClass]=\"rowClass\"\n              (activate)=\"selector.onActivate($event, i)\"\n              (deactivate)=\"selector.onDeactivate($event, i)\">\n            </datatable-body-row>\n          </ng-template>\n        </datatable-row-wrapper>\n        <datatable-summary-row\n          *ngIf=\"summaryRow && summaryPosition === 'bottom'\"\n          [ngStyle]=\"getBottomSummaryRowStyles()\"\n          [rowHeight]=\"summaryHeight\"\n          [offsetX]=\"offsetX\"\n          [innerWidth]=\"innerWidth\"\n          [rows]=\"rows\"\n          [columns]=\"columns\"\n        >\n        </datatable-summary-row>\n      </datatable-scroller>\n      <div\n        class=\"empty-row\"\n        *ngIf=\"!rows?.length && !loadingIndicator\"\n        [innerHTML]=\"emptyMessage\"\n      ></div>\n    </datatable-selection>\n  ",
             changeDetection: core_["ChangeDetectionStrategy"].OnPush,
             host: {
                 class: 'datatable-body'
@@ -2419,7 +2415,7 @@ var body_cell_component_DataTableBodyCellComponent = /** @class */ (function () 
             isSelected: this.isSelected,
             rowIndex: this.rowIndex,
             treeStatus: this.treeStatus,
-            onTreeAction: this.onTreeAction.bind(this),
+            onTreeAction: this.onTreeAction.bind(this)
         };
         this._element = element.nativeElement;
     }
@@ -2642,7 +2638,8 @@ var body_cell_component_DataTableBodyCellComponent = /** @class */ (function () 
         if (this.value !== value) {
             this.value = value;
             this.cellContext.value = value;
-            this.sanitizedValue = value !== null && value !== undefined ? this.stripHtml(value) : value;
+            this.sanitizedValue =
+                value !== null && value !== undefined ? this.stripHtml(value) : value;
             this.cd.markForCheck();
         }
     };
@@ -2792,7 +2789,7 @@ var body_cell_component_DataTableBodyCellComponent = /** @class */ (function () 
         body_cell_component___metadata("design:type", core_["EventEmitter"])
     ], DataTableBodyCellComponent.prototype, "treeAction", void 0);
     body_cell_component___decorate([
-        Object(core_["ViewChild"])('cellTemplate', { read: core_["ViewContainerRef"] }),
+        Object(core_["ViewChild"])('cellTemplate', { read: core_["ViewContainerRef"], static: true }),
         body_cell_component___metadata("design:type", core_["ViewContainerRef"])
     ], DataTableBodyCellComponent.prototype, "cellTemplate", void 0);
     body_cell_component___decorate([
@@ -2854,7 +2851,7 @@ var body_cell_component_DataTableBodyCellComponent = /** @class */ (function () 
         Object(core_["Component"])({
             selector: 'datatable-body-cell',
             changeDetection: core_["ChangeDetectionStrategy"].OnPush,
-            template: "\n    <div class=\"datatable-body-cell-label\"\n      [style.margin-left.px]=\"calcLeftMargin(column, row)\">\n      <label\n        *ngIf=\"column.checkboxable && (!displayCheck || displayCheck(row, column, value))\"\n        class=\"datatable-checkbox\">\n        <input\n          type=\"checkbox\"\n          [checked]=\"isSelected\"\n          (click)=\"onCheckboxChange($event)\"\n        />\n      </label>\n      <ng-container *ngIf=\"column.isTreeColumn\">\n        <button *ngIf=\"!column.treeToggleTemplate\"\n          class=\"datatable-tree-button\"\n          [disabled]=\"treeStatus==='disabled'\"\n          (click)=\"onTreeAction()\">\n          <span>\n            <i *ngIf=\"treeStatus==='loading'\"\n              class=\"icon datatable-icon-collapse\"></i>\n            <i *ngIf=\"treeStatus==='collapsed'\"\n              class=\"icon datatable-icon-up\"></i>\n            <i *ngIf=\"treeStatus==='expanded' ||\n                      treeStatus==='disabled'\"\n              class=\"icon datatable-icon-down\"></i>\n          </span>\n        </button>\n        <ng-template *ngIf=\"column.treeToggleTemplate\"\n          [ngTemplateOutlet]=\"column.treeToggleTemplate\"\n          [ngTemplateOutletContext]=\"{ cellContext: cellContext }\">\n        </ng-template>\n      </ng-container>\n\n      <span\n        *ngIf=\"!column.cellTemplate\"\n        [title]=\"sanitizedValue\"\n        [innerHTML]=\"value\">\n      </span>\n      <ng-template #cellTemplate\n        *ngIf=\"column.cellTemplate\"\n        [ngTemplateOutlet]=\"column.cellTemplate\"\n        [ngTemplateOutletContext]=\"cellContext\">\n      </ng-template>\n    </div>\n  "
+            template: "\n    <div\n      class=\"datatable-body-cell-label\"\n      [style.margin-left.px]=\"calcLeftMargin(column, row)\"\n    >\n      <label\n        *ngIf=\"\n          column.checkboxable &&\n          (!displayCheck || displayCheck(row, column, value))\n        \"\n        class=\"datatable-checkbox\"\n      >\n        <input\n          type=\"checkbox\"\n          [checked]=\"isSelected\"\n          (click)=\"onCheckboxChange($event)\"\n        />\n      </label>\n      <ng-container *ngIf=\"column.isTreeColumn\">\n        <button\n          *ngIf=\"!column.treeToggleTemplate\"\n          class=\"datatable-tree-button\"\n          [disabled]=\"treeStatus === 'disabled'\"\n          (click)=\"onTreeAction()\"\n        >\n          <span>\n            <i\n              *ngIf=\"treeStatus === 'loading'\"\n              class=\"icon datatable-icon-collapse\"\n            ></i>\n            <i\n              *ngIf=\"treeStatus === 'collapsed'\"\n              class=\"icon datatable-icon-up\"\n            ></i>\n            <i\n              *ngIf=\"treeStatus === 'expanded' || treeStatus === 'disabled'\"\n              class=\"icon datatable-icon-down\"\n            ></i>\n          </span>\n        </button>\n        <ng-template\n          *ngIf=\"column.treeToggleTemplate\"\n          [ngTemplateOutlet]=\"column.treeToggleTemplate\"\n          [ngTemplateOutletContext]=\"{ cellContext: cellContext }\"\n        >\n        </ng-template>\n      </ng-container>\n\n      <span\n        *ngIf=\"!column.cellTemplate\"\n        [title]=\"sanitizedValue\"\n        [innerHTML]=\"value\"\n      >\n      </span>\n      <ng-template\n        #cellTemplate\n        *ngIf=\"column.cellTemplate\"\n        [ngTemplateOutlet]=\"column.cellTemplate\"\n        [ngTemplateOutletContext]=\"cellContext\"\n      >\n      </ng-template>\n    </div>\n  "
         }),
         body_cell_component___metadata("design:paramtypes", [core_["ElementRef"], core_["ChangeDetectorRef"]])
     ], DataTableBodyCellComponent);
@@ -3592,7 +3589,10 @@ var body_group_header_directive_DatatableGroupHeaderDirective = /** @class */ (f
     ], DatatableGroupHeaderDirective.prototype, "rowHeight", void 0);
     body_group_header_directive___decorate([
         Object(core_["Input"])(),
-        Object(core_["ContentChild"])(body_group_header_template_directive_DatatableGroupHeaderTemplateDirective, { read: core_["TemplateRef"] }),
+        Object(core_["ContentChild"])(body_group_header_template_directive_DatatableGroupHeaderTemplateDirective, {
+            read: core_["TemplateRef"],
+            static: true
+        }),
         body_group_header_directive___metadata("design:type", core_["TemplateRef"])
     ], DatatableGroupHeaderDirective.prototype, "template", void 0);
     body_group_header_directive___decorate([
@@ -3914,17 +3914,26 @@ var column_directive_DataTableColumnDirective = /** @class */ (function () {
     ], DataTableColumnDirective.prototype, "summaryTemplate", void 0);
     column_directive___decorate([
         Object(core_["Input"])(),
-        Object(core_["ContentChild"])(column_cell_directive_DataTableColumnCellDirective, { read: core_["TemplateRef"] }),
+        Object(core_["ContentChild"])(column_cell_directive_DataTableColumnCellDirective, {
+            read: core_["TemplateRef"],
+            static: true
+        }),
         column_directive___metadata("design:type", core_["TemplateRef"])
     ], DataTableColumnDirective.prototype, "cellTemplate", void 0);
     column_directive___decorate([
         Object(core_["Input"])(),
-        Object(core_["ContentChild"])(column_header_directive_DataTableColumnHeaderDirective, { read: core_["TemplateRef"] }),
+        Object(core_["ContentChild"])(column_header_directive_DataTableColumnHeaderDirective, {
+            read: core_["TemplateRef"],
+            static: true
+        }),
         column_directive___metadata("design:type", core_["TemplateRef"])
     ], DataTableColumnDirective.prototype, "headerTemplate", void 0);
     column_directive___decorate([
         Object(core_["Input"])(),
-        Object(core_["ContentChild"])(tree_directive_DataTableColumnCellTreeToggle, { read: core_["TemplateRef"] }),
+        Object(core_["ContentChild"])(tree_directive_DataTableColumnCellTreeToggle, {
+            read: core_["TemplateRef"],
+            static: true
+        }),
         column_directive___metadata("design:type", core_["TemplateRef"])
     ], DataTableColumnDirective.prototype, "treeToggleTemplate", void 0);
     DataTableColumnDirective = column_directive___decorate([
@@ -4023,7 +4032,10 @@ var row_detail_directive_DatatableRowDetailDirective = /** @class */ (function (
     ], DatatableRowDetailDirective.prototype, "rowHeight", void 0);
     row_detail_directive___decorate([
         Object(core_["Input"])(),
-        Object(core_["ContentChild"])(row_detail_template_directive_DatatableRowDetailTemplateDirective, { read: core_["TemplateRef"] }),
+        Object(core_["ContentChild"])(row_detail_template_directive_DatatableRowDetailTemplateDirective, {
+            read: core_["TemplateRef"],
+            static: true
+        }),
         row_detail_directive___metadata("design:type", core_["TemplateRef"])
     ], DatatableRowDetailDirective.prototype, "template", void 0);
     row_detail_directive___decorate([
@@ -4109,7 +4121,10 @@ var footer_directive_DatatableFooterDirective = /** @class */ (function () {
     ], DatatableFooterDirective.prototype, "pagerNextIcon", void 0);
     footer_directive___decorate([
         Object(core_["Input"])(),
-        Object(core_["ContentChild"])(footer_template_directive_DataTableFooterTemplateDirective, { read: core_["TemplateRef"] }),
+        Object(core_["ContentChild"])(footer_template_directive_DataTableFooterTemplateDirective, {
+            read: core_["TemplateRef"],
+            static: false
+        }),
         footer_directive___metadata("design:type", core_["TemplateRef"])
     ], DatatableFooterDirective.prototype, "template", void 0);
     DatatableFooterDirective = footer_directive___decorate([
@@ -6196,23 +6211,23 @@ var datatable_component_DatatableComponent = /** @class */ (function () {
         datatable_component___metadata("design:paramtypes", [core_["QueryList"]])
     ], DatatableComponent.prototype, "columnTemplates", null);
     datatable_component___decorate([
-        Object(core_["ContentChild"])(row_detail_directive_DatatableRowDetailDirective),
+        Object(core_["ContentChild"])(row_detail_directive_DatatableRowDetailDirective, { static: true }),
         datatable_component___metadata("design:type", row_detail_directive_DatatableRowDetailDirective)
     ], DatatableComponent.prototype, "rowDetail", void 0);
     datatable_component___decorate([
-        Object(core_["ContentChild"])(body_group_header_directive_DatatableGroupHeaderDirective),
+        Object(core_["ContentChild"])(body_group_header_directive_DatatableGroupHeaderDirective, { static: true }),
         datatable_component___metadata("design:type", body_group_header_directive_DatatableGroupHeaderDirective)
     ], DatatableComponent.prototype, "groupHeader", void 0);
     datatable_component___decorate([
-        Object(core_["ContentChild"])(footer_directive_DatatableFooterDirective),
+        Object(core_["ContentChild"])(footer_directive_DatatableFooterDirective, { static: true }),
         datatable_component___metadata("design:type", footer_directive_DatatableFooterDirective)
     ], DatatableComponent.prototype, "footer", void 0);
     datatable_component___decorate([
-        Object(core_["ViewChild"])(body_component_DataTableBodyComponent),
+        Object(core_["ViewChild"])(body_component_DataTableBodyComponent, { static: true }),
         datatable_component___metadata("design:type", body_component_DataTableBodyComponent)
     ], DatatableComponent.prototype, "bodyComponent", void 0);
     datatable_component___decorate([
-        Object(core_["ViewChild"])(header_component_DataTableHeaderComponent),
+        Object(core_["ViewChild"])(header_component_DataTableHeaderComponent, { static: true }),
         datatable_component___metadata("design:type", header_component_DataTableHeaderComponent)
     ], DatatableComponent.prototype, "headerComponent", void 0);
     datatable_component___decorate([
@@ -6701,7 +6716,7 @@ var orderable_directive_OrderableDirective = /** @class */ (function () {
     ], OrderableDirective.prototype, "draggables", void 0);
     OrderableDirective = orderable_directive___decorate([
         Object(core_["Directive"])({ selector: '[orderable]' }),
-        orderable_directive___param(1, Object(core_["Inject"])(platform_browser_["DOCUMENT"])),
+        orderable_directive___param(1, Object(core_["Inject"])(common_["DOCUMENT"])),
         orderable_directive___metadata("design:paramtypes", [core_["KeyValueDiffers"], Object])
     ], OrderableDirective);
     return OrderableDirective;
@@ -7031,13 +7046,6 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__angular_common__;
 /***/ (function(module, exports) {
 
 module.exports = __WEBPACK_EXTERNAL_MODULE__angular_core__;
-
-/***/ }),
-
-/***/ "@angular/platform-browser":
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE__angular_platform_browser__;
 
 /***/ }),
 

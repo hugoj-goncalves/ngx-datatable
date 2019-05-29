@@ -12,7 +12,7 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 };
 import { Directive, Output, EventEmitter, ContentChildren, QueryList, KeyValueDiffers, Inject } from '@angular/core';
 import { DraggableDirective } from './draggable.directive';
-import { DOCUMENT } from '@angular/platform-browser';
+import { DOCUMENT } from '@angular/common';
 var OrderableDirective = /** @class */ (function () {
     function OrderableDirective(differs, document) {
         this.document = document;

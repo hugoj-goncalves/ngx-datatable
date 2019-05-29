@@ -54,7 +54,10 @@ var DatatableRowDetailDirective = /** @class */ (function () {
     ], DatatableRowDetailDirective.prototype, "rowHeight", void 0);
     __decorate([
         Input(),
-        ContentChild(DatatableRowDetailTemplateDirective, { read: TemplateRef }),
+        ContentChild(DatatableRowDetailTemplateDirective, {
+            read: TemplateRef,
+            static: true
+        }),
         __metadata("design:type", TemplateRef)
     ], DatatableRowDetailDirective.prototype, "template", void 0);
     __decorate([

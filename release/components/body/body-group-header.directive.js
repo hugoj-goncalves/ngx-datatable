@@ -53,7 +53,10 @@ var DatatableGroupHeaderDirective = /** @class */ (function () {
     ], DatatableGroupHeaderDirective.prototype, "rowHeight", void 0);
     __decorate([
         Input(),
-        ContentChild(DatatableGroupHeaderTemplateDirective, { read: TemplateRef }),
+        ContentChild(DatatableGroupHeaderTemplateDirective, {
+            read: TemplateRef,
+            static: true
+        }),
         __metadata("design:type", TemplateRef)
     ], DatatableGroupHeaderDirective.prototype, "template", void 0);
     __decorate([

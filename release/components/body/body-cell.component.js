@@ -30,7 +30,7 @@ var DataTableBodyCellComponent = /** @class */ (function () {
             isSelected: this.isSelected,
             rowIndex: this.rowIndex,
             treeStatus: this.treeStatus,
-            onTreeAction: this.onTreeAction.bind(this),
+            onTreeAction: this.onTreeAction.bind(this)
         };
         this._element = element.nativeElement;
     }
@@ -253,7 +253,8 @@ var DataTableBodyCellComponent = /** @class */ (function () {
         if (this.value !== value) {
             this.value = value;
             this.cellContext.value = value;
-            this.sanitizedValue = value !== null && value !== undefined ? this.stripHtml(value) : value;
+            this.sanitizedValue =
+                value !== null && value !== undefined ? this.stripHtml(value) : value;
             this.cd.markForCheck();
         }
     };
@@ -403,7 +404,7 @@ var DataTableBodyCellComponent = /** @class */ (function () {
         __metadata("design:type", EventEmitter)
     ], DataTableBodyCellComponent.prototype, "treeAction", void 0);
     __decorate([
-        ViewChild('cellTemplate', { read: ViewContainerRef }),
+        ViewChild('cellTemplate', { read: ViewContainerRef, static: true }),
         __metadata("design:type", ViewContainerRef)
     ], DataTableBodyCellComponent.prototype, "cellTemplate", void 0);
     __decorate([
@@ -465,7 +466,7 @@ var DataTableBodyCellComponent = /** @class */ (function () {
         Component({
             selector: 'datatable-body-cell',
             changeDetection: ChangeDetectionStrategy.OnPush,
-            template: "\n    <div class=\"datatable-body-cell-label\"\n      [style.margin-left.px]=\"calcLeftMargin(column, row)\">\n      <label\n        *ngIf=\"column.checkboxable && (!displayCheck || displayCheck(row, column, value))\"\n        class=\"datatable-checkbox\">\n        <input\n          type=\"checkbox\"\n          [checked]=\"isSelected\"\n          (click)=\"onCheckboxChange($event)\"\n        />\n      </label>\n      <ng-container *ngIf=\"column.isTreeColumn\">\n        <button *ngIf=\"!column.treeToggleTemplate\"\n          class=\"datatable-tree-button\"\n          [disabled]=\"treeStatus==='disabled'\"\n          (click)=\"onTreeAction()\">\n          <span>\n            <i *ngIf=\"treeStatus==='loading'\"\n              class=\"icon datatable-icon-collapse\"></i>\n            <i *ngIf=\"treeStatus==='collapsed'\"\n              class=\"icon datatable-icon-up\"></i>\n            <i *ngIf=\"treeStatus==='expanded' ||\n                      treeStatus==='disabled'\"\n              class=\"icon datatable-icon-down\"></i>\n          </span>\n        </button>\n        <ng-template *ngIf=\"column.treeToggleTemplate\"\n          [ngTemplateOutlet]=\"column.treeToggleTemplate\"\n          [ngTemplateOutletContext]=\"{ cellContext: cellContext }\">\n        </ng-template>\n      </ng-container>\n\n      <span\n        *ngIf=\"!column.cellTemplate\"\n        [title]=\"sanitizedValue\"\n        [innerHTML]=\"value\">\n      </span>\n      <ng-template #cellTemplate\n        *ngIf=\"column.cellTemplate\"\n        [ngTemplateOutlet]=\"column.cellTemplate\"\n        [ngTemplateOutletContext]=\"cellContext\">\n      </ng-template>\n    </div>\n  "
+            template: "\n    <div\n      class=\"datatable-body-cell-label\"\n      [style.margin-left.px]=\"calcLeftMargin(column, row)\"\n    >\n      <label\n        *ngIf=\"\n          column.checkboxable &&\n          (!displayCheck || displayCheck(row, column, value))\n        \"\n        class=\"datatable-checkbox\"\n      >\n        <input\n          type=\"checkbox\"\n          [checked]=\"isSelected\"\n          (click)=\"onCheckboxChange($event)\"\n        />\n      </label>\n      <ng-container *ngIf=\"column.isTreeColumn\">\n        <button\n          *ngIf=\"!column.treeToggleTemplate\"\n          class=\"datatable-tree-button\"\n          [disabled]=\"treeStatus === 'disabled'\"\n          (click)=\"onTreeAction()\"\n        >\n          <span>\n            <i\n              *ngIf=\"treeStatus === 'loading'\"\n              class=\"icon datatable-icon-collapse\"\n            ></i>\n            <i\n              *ngIf=\"treeStatus === 'collapsed'\"\n              class=\"icon datatable-icon-up\"\n            ></i>\n            <i\n              *ngIf=\"treeStatus === 'expanded' || treeStatus === 'disabled'\"\n              class=\"icon datatable-icon-down\"\n            ></i>\n          </span>\n        </button>\n        <ng-template\n          *ngIf=\"column.treeToggleTemplate\"\n          [ngTemplateOutlet]=\"column.treeToggleTemplate\"\n          [ngTemplateOutletContext]=\"{ cellContext: cellContext }\"\n        >\n        </ng-template>\n      </ng-container>\n\n      <span\n        *ngIf=\"!column.cellTemplate\"\n        [title]=\"sanitizedValue\"\n        [innerHTML]=\"value\"\n      >\n      </span>\n      <ng-template\n        #cellTemplate\n        *ngIf=\"column.cellTemplate\"\n        [ngTemplateOutlet]=\"column.cellTemplate\"\n        [ngTemplateOutletContext]=\"cellContext\"\n      >\n      </ng-template>\n    </div>\n  "
         }),
         __metadata("design:paramtypes", [ElementRef, ChangeDetectorRef])
     ], DataTableBodyCellComponent);

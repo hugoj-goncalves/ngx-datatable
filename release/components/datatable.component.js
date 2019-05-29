@@ -1192,23 +1192,23 @@ var DatatableComponent = /** @class */ (function () {
         __metadata("design:paramtypes", [QueryList])
     ], DatatableComponent.prototype, "columnTemplates", null);
     __decorate([
-        ContentChild(DatatableRowDetailDirective),
+        ContentChild(DatatableRowDetailDirective, { static: true }),
         __metadata("design:type", DatatableRowDetailDirective)
     ], DatatableComponent.prototype, "rowDetail", void 0);
     __decorate([
-        ContentChild(DatatableGroupHeaderDirective),
+        ContentChild(DatatableGroupHeaderDirective, { static: true }),
         __metadata("design:type", DatatableGroupHeaderDirective)
     ], DatatableComponent.prototype, "groupHeader", void 0);
     __decorate([
-        ContentChild(DatatableFooterDirective),
+        ContentChild(DatatableFooterDirective, { static: true }),
         __metadata("design:type", DatatableFooterDirective)
     ], DatatableComponent.prototype, "footer", void 0);
     __decorate([
-        ViewChild(DataTableBodyComponent),
+        ViewChild(DataTableBodyComponent, { static: true }),
         __metadata("design:type", DataTableBodyComponent)
     ], DatatableComponent.prototype, "bodyComponent", void 0);
     __decorate([
-        ViewChild(DataTableHeaderComponent),
+        ViewChild(DataTableHeaderComponent, { static: true }),
         __metadata("design:type", DataTableHeaderComponent)
     ], DatatableComponent.prototype, "headerComponent", void 0);
     __decorate([

@@ -42,7 +42,10 @@ var DatatableFooterDirective = /** @class */ (function () {
     ], DatatableFooterDirective.prototype, "pagerNextIcon", void 0);
     __decorate([
         Input(),
-        ContentChild(DataTableFooterTemplateDirective, { read: TemplateRef }),
+        ContentChild(DataTableFooterTemplateDirective, {
+            read: TemplateRef,
+            static: false
+        }),
         __metadata("design:type", TemplateRef)
     ], DatatableFooterDirective.prototype, "template", void 0);
     DatatableFooterDirective = __decorate([

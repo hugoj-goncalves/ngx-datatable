@@ -115,17 +115,26 @@ var DataTableColumnDirective = /** @class */ (function () {
     ], DataTableColumnDirective.prototype, "summaryTemplate", void 0);
     __decorate([
         Input(),
-        ContentChild(DataTableColumnCellDirective, { read: TemplateRef }),
+        ContentChild(DataTableColumnCellDirective, {
+            read: TemplateRef,
+            static: true
+        }),
         __metadata("design:type", TemplateRef)
     ], DataTableColumnDirective.prototype, "cellTemplate", void 0);
     __decorate([
         Input(),
-        ContentChild(DataTableColumnHeaderDirective, { read: TemplateRef }),
+        ContentChild(DataTableColumnHeaderDirective, {
+            read: TemplateRef,
+            static: true
+        }),
         __metadata("design:type", TemplateRef)
     ], DataTableColumnDirective.prototype, "headerTemplate", void 0);
     __decorate([
         Input(),
-        ContentChild(DataTableColumnCellTreeToggle, { read: TemplateRef }),
+        ContentChild(DataTableColumnCellTreeToggle, {
+            read: TemplateRef,
+            static: true
+        }),
         __metadata("design:type", TemplateRef)
     ], DataTableColumnDirective.prototype, "treeToggleTemplate", void 0);
     DataTableColumnDirective = __decorate([

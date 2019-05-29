@@ -1,4 +1,4 @@
-import { getterForProp } from '.';
+import { getterForProp } from './column-prop-getters';
 export function optionalGetterForProp(prop) {
     return prop && (function (row) { return getterForProp(prop)(row, prop); });
 }
