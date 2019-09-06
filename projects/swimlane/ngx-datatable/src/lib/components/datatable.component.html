@@ -55,6 +55,7 @@
     [summaryPosition]="summaryPosition"
     (page)="onBodyPage($event)"
     (activate)="activate.emit($event)"
+    (deactivate)="deactivate.emit($event)"
     (rowContextmenu)="onRowContextmenu($event)"
     (select)="onBodySelect($event)"
     (scroll)="onBodyScroll($event)"
