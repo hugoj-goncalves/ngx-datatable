@@ -359,6 +359,8 @@ export class DatatableComponent implements OnInit, DoCheck, AfterViewInit {
    */
   @Input() displayCheck: (row: any, column?: any, value?: any) => boolean;
 
+  @Input() invertChecked: boolean;
+
   /**
    * A boolean you can use to set the detault behaviour of rows and groups
    * whether they will start expanded or not. If ommited the default is NOT expanded.
