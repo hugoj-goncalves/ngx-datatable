@@ -14,7 +14,7 @@ function updateVersion {
 
 newVersion="$1"
 if [ -z "$newVersion" ]; then
-    newVersion="patch"
+    newVersion="prerelease"
 fi
 
 git status | grep 'nothing to commit'
@@ -23,9 +23,9 @@ if [ $? -eq 1 ]; then
     exit 1
 fi
 
-git pull origin master
+# git pull origin master
 updateVersion
-build
+build || exit 2
 
 git status | grep 'nothing to commit'
 if [ $? -eq 1 ]; then
