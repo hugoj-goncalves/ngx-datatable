@@ -5,7 +5,7 @@ function build {
 }
 
 function updateVersion {
-    pushd projects/swinlane/ngx-datatable
+    pushd projects/swimlane/ngx-datatable
     echo "New version change: $newVersion"
     oldVersionValue=$(cat package.json | grep version | grep -oP "\d+[^\"]+")
     npm version "$newVersion"
