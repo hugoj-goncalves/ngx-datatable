@@ -35,7 +35,7 @@ if [ $? -eq 1 ]; then
 fi
 git push
 
-pushd dist/projects/swimlane/ngx-datatable
+pushd dist/swimlane/ngx-datatable
 npm config set scope @eklesia
 npm config set access public
 npm publish
