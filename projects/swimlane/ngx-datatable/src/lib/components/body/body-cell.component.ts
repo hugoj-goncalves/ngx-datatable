@@ -66,6 +66,7 @@ export type TreeStatus = 'collapsed' | 'expanded' | 'loading' | 'disabled';
 })
 export class DataTableBodyCellComponent implements DoCheck, OnDestroy {
   @Input() displayCheck: (row: any, column?: TableColumn, value?: any) => boolean;
+  @Input() invertChecked: boolean;
 
   @Input() set group(group: any) {
     this._group = group;
@@ -96,7 +97,7 @@ export class DataTableBodyCellComponent implements DoCheck, OnDestroy {
   }
 
   get isSelected(): boolean {
-    return this._isSelected;
+    return this.invertChecked ? !this._isSelected : this._isSelected;
   }
 
   @Input() set expanded(val: boolean) {

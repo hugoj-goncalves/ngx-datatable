@@ -40,6 +40,7 @@ import { translateXY } from '../../utils/translate';
         [column]="column"
         [rowHeight]="rowHeight"
         [displayCheck]="displayCheck"
+        [invertChecked]="invertChecked"
         [treeStatus]="treeStatus"
         (activate)="onActivate($event, ii)"
         (treeAction)="onTreeAction()"
@@ -81,6 +82,7 @@ export class DataTableBodyRowComponent implements DoCheck {
   @Input() isSelected: boolean;
   @Input() rowIndex: number;
   @Input() displayCheck: any;
+  @Input() invertChecked: boolean;
   @Input() treeStatus: TreeStatus = 'collapsed';
 
   @Input()
