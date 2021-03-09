@@ -3,10 +3,10 @@
   "version": "17.0.0-eklesia.8",
   "description": "ngx-datatable is an Angular table grid component for presenting large and complex data.",
   "peerDependencies": {
-    "@angular/common": "^9.1.0",
-    "@angular/core": "^9.1.0",
-    "@angular/platform-browser": "^9.1.0",
-    "rxjs": "^6.5.5"
+    "@angular/common": ">=9.1.0",
+    "@angular/core": ">=9.1.0",
+    "@angular/platform-browser": ">=9.1.0",
+    "rxjs": ">=6.5.5"
   },
   "repository": {
     "type": "git",
