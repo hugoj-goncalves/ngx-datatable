@@ -140,7 +140,7 @@ export function forceFillColumnWidths(
     contentWidth = getContentWidth(allColumns);
     remainingWidth = expectedWidth - contentWidth;
     removeProcessedColumns(columnsToResize, columnsProcessed);
-  } while (remainingWidth > remainingWidthLimit && columnsToResize.length !== 0);
+  } while (Math.abs(remainingWidth) > remainingWidthLimit && columnsToResize.length !== 0);
 }
 
 /**
