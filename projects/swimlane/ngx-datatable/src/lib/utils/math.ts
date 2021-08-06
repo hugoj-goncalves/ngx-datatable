@@ -116,6 +116,8 @@ export function forceFillColumnWidths(
 
   // This loop takes care of the
   do {
+    if (expectedWidth <= 0) break;
+
     additionWidthPerColumn = remainingWidth / columnsToResize.length;
     exceedsWindow = contentWidth >= expectedWidth;
 
@@ -147,7 +149,7 @@ export function forceFillColumnWidths(
           columnsWithoutWidthZero.map(m => m.width)
         );
       } else {
-        defaultColWidth = 100;
+        defaultColWidth = 300;
       }
     }
 
