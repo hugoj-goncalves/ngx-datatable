@@ -139,7 +139,7 @@ export function forceFillColumnWidths(
       column.width = Math.max(0, column.width);
     }
 
-    const columnsWithoutWidthZero = columnsToResize.filter(m => m.width === 0);
+    const columnsWithoutWidthZero = columnsToResize.filter(m => m.width !== 0);
     if (columnsWithoutWidthZero.length !== columnsToResize.length) {
       defaultColWidth = Math.min.apply(
         null,
