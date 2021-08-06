@@ -111,6 +111,8 @@ export function forceFillColumnWidths(
   let remainingWidth = expectedWidth - contentWidth;
   const columnsProcessed: any[] = [];
   const remainingWidthLimit = 1; // when to stop
+  const maxIterations = 1000;
+  let iterations = 1;
 
   // This loop takes care of the
   do {
@@ -137,10 +139,23 @@ export function forceFillColumnWidths(
       column.width = Math.max(0, column.width);
     }
 
+    const columnsWithoutWidthZero = columnsToResize.filter(m => m.width === 0);
+    if (columnsWithoutWidthZero.length !== columnsToResize.length) {
+      defaultColWidth = Math.min.apply(
+        null,
+        columnsWithoutWidthZero.map(m => m.width)
+      );
+    }
+
     contentWidth = getContentWidth(allColumns);
     remainingWidth = expectedWidth - contentWidth;
     removeProcessedColumns(columnsToResize, columnsProcessed);
-  } while (Math.abs(remainingWidth) > remainingWidthLimit && columnsToResize.length !== 0);
+    iterations++;
+  } while (
+    iterations < maxIterations &&
+    Math.abs(remainingWidth) > remainingWidthLimit &&
+    columnsToResize.length !== 0
+  );
 }
 
 /**
