@@ -141,10 +141,14 @@ export function forceFillColumnWidths(
 
     const columnsWithoutWidthZero = columnsToResize.filter(m => m.width !== 0);
     if (columnsWithoutWidthZero.length !== columnsToResize.length) {
-      defaultColWidth = Math.min.apply(
-        null,
-        columnsWithoutWidthZero.map(m => m.width)
-      );
+      if (columnsWithoutWidthZero.length > 0) {
+        defaultColWidth = Math.min.apply(
+          null,
+          columnsWithoutWidthZero.map(m => m.width)
+        );
+      } else {
+        defaultColWidth = 100;
+      }
     }
 
     contentWidth = getContentWidth(allColumns);
