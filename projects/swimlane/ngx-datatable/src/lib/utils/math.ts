@@ -111,7 +111,7 @@ export function forceFillColumnWidths(
   let remainingWidth = expectedWidth - contentWidth;
   const columnsProcessed: any[] = [];
   const remainingWidthLimit = 1; // when to stop
-  const maxIterations = 1000;
+  const maxIterations = 50;
   let iterations = 1;
 
   // This loop takes care of the
