@@ -75,6 +75,7 @@ import { translateXY } from '../../utils/translate';
             [expanded]="getRowExpanded(group)"
             [rowClass]="rowClass"
             [displayCheck]="displayCheck"
+            [invertChecked]="invertChecked"
             [treeStatus]="group && group.treeStatus"
             (treeAction)="onTreeAction(group)"
             (activate)="selector.onActivate($event, indexes.first + i)"
@@ -133,6 +134,7 @@ export class DataTableBodyComponent implements OnInit, OnDestroy {
   @Input() groupHeader: any;
   @Input() selectCheck: any;
   @Input() displayCheck: any;
+  @Input() invertChecked: boolean;
   @Input() trackByProp: string;
   @Input() rowClass: any;
   @Input() groupedRows: any;
