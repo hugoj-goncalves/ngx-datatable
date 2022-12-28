@@ -40,8 +40,8 @@ export function orderByComparator(a: any, b: any): number {
     a = String(a);
     b = String(b);
     // Isn't a number so lowercase the string to properly compare
-    if (a.toLowerCase() < b.toLowerCase()) return -1;
-    if (a.toLowerCase() > b.toLowerCase()) return 1;
+    if (removeAccents(a.toLowerCase()) < removeAccents(b.toLowerCase())) return -1;
+    if (removeAccents(a.toLowerCase()) > removeAccents(b.toLowerCase())) return 1;
   } else {
     // Parse strings as numbers to compare properly
     if (parseFloat(a) < parseFloat(b)) return -1;
@@ -50,6 +50,10 @@ export function orderByComparator(a: any, b: any): number {
 
   // equal each other
   return 0;
+}
+
+export function removeAccents(str: string): string {
+  return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 }
 
 /**
