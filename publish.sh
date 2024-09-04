@@ -1,7 +1,7 @@
 #!/bin/bash
 
 function build {
-  npm run package
+  npm run package && sed -i.bak "s/\"exports\":\s*{/\"exports\": \{\n\t\t\".\/css\/\*.css\"\: \".\/css\/\*.css\",\n\t\t\".\/svg\/\*.svg\"\: \".\/svg\/\*.svg\",\n\t\t\".\/ttf\/\*.ttf\"\: \".\/ttf\/\*.ttf\",\n\t\t\".\/eot\/\*.eot\"\: \".\/eot\/\*.eot\",\n\t\t\".\/woff\/\*.woff\"\: \".\/woff\/\*.woff\",/" ./dist/swimlane/ngx-datatable/package.json
 }
 
 function updateVersion {
