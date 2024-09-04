@@ -135,7 +135,6 @@
       }
     }
   },
-  "defaultProject": "ngx-datatable",
   "cli": {
     "analytics": false
   }
