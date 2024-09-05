@@ -22,7 +22,7 @@ const prefix = (function () {
     ? {
         dom,
         lowercase: pre,
-        // css: `-${pre}-`,
+        css: '', // `-${pre}-`,
         js: pre[0].toUpperCase() + pre.substr(1)
       }
     : undefined;
