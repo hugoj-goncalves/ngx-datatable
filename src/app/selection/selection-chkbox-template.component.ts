@@ -34,7 +34,7 @@ import { ColumnMode, SelectionType } from 'projects/swimlane/ngx-datatable/src/p
           [selected]="selected"
           [selectionType]="SelectionType.checkbox"
           (activate)="onActivate($event)"
-          (select)="onSelect($event)"
+          (selectOut)="onSelect($event)"
         >
           <ngx-datatable-column
             [width]="30"

@@ -36,7 +36,7 @@ import { ColumnMode, SelectionType } from 'projects/swimlane/ngx-datatable/src/p
           [selectAllRowsOnPage]="false"
           [displayCheck]="displayCheck"
           (activate)="onActivate($event)"
-          (select)="onSelect($event)"
+          (selectOut)="onSelect($event)"
         >
           <ngx-datatable-column
             [width]="30"

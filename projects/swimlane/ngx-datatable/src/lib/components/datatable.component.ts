@@ -426,7 +426,7 @@ export class DatatableComponent implements OnInit, DoCheck, AfterViewInit {
   /**
    * A cell or row was selected.
    */
-  @Output() select: EventEmitter<any> = new EventEmitter();
+  @Output() selectOut: EventEmitter<any> = new EventEmitter();
 
   /**
    * Column sort was invoked.
@@ -915,7 +915,7 @@ export class DatatableComponent implements OnInit, DoCheck, AfterViewInit {
 
     if (this.selectAllRowsOnPage) {
       this.selected = [];
-      this.select.emit({
+      this.selectOut.emit({
         selected: this.selected
       });
     }
@@ -1058,7 +1058,7 @@ export class DatatableComponent implements OnInit, DoCheck, AfterViewInit {
     // clean selected rows
     if (this.selectAllRowsOnPage) {
       this.selected = [];
-      this.select.emit({
+      this.selectOut.emit({
         selected: this.selected
       });
     }
@@ -1113,7 +1113,7 @@ export class DatatableComponent implements OnInit, DoCheck, AfterViewInit {
       }
     }
 
-    this.select.emit({
+    this.selectOut.emit({
       selected: this.selected
     });
   }
@@ -1122,7 +1122,7 @@ export class DatatableComponent implements OnInit, DoCheck, AfterViewInit {
    * A row was selected from body
    */
   onBodySelect(event: any): void {
-    this.select.emit(event);
+    this.selectOut.emit(event);
   }
 
   /**

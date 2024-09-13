@@ -59,7 +59,7 @@ import { translateXY } from '../../utils/translate';
           [sortUnsetIcon]="sortUnsetIcon"
           [allRowsSelected]="allRowsSelected"
           (sort)="onSort($event)"
-          (select)="select.emit($event)"
+          (selectOut)="selectOut.emit($event)"
           (columnContextmenu)="columnContextmenu.emit($event)"
         >
         </datatable-header-cell>
@@ -145,7 +145,7 @@ export class DataTableHeaderComponent implements OnDestroy {
   @Output() sort: EventEmitter<any> = new EventEmitter();
   @Output() reorder: EventEmitter<any> = new EventEmitter();
   @Output() resize: EventEmitter<any> = new EventEmitter();
-  @Output() select: EventEmitter<any> = new EventEmitter();
+  @Output() selectOut: EventEmitter<any> = new EventEmitter();
   @Output() columnContextmenu = new EventEmitter<{ event: MouseEvent; column: any }>(false);
 
   _columnsByPin: any;

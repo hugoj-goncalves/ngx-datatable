@@ -26,7 +26,7 @@ import { ColumnMode, SelectionType } from 'projects/swimlane/ngx-datatable/src/p
         [rowHeight]="50"
         [selected]="selected"
         [selectionType]="SelectionType.cell"
-        (select)="onSelect($event)"
+        (selectOut)="onSelect($event)"
         (activate)="onActivate($event)"
       >
       </ngx-datatable>

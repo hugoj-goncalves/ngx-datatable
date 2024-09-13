@@ -25,7 +25,7 @@ import { SortDirection } from '../../types/sort-direction.type';
       >
       </ng-template>
       <label *ngIf="isCheckboxable" class="datatable-checkbox">
-        <input type="checkbox" [checked]="allRowsSelected" (change)="select.emit(!allRowsSelected)" />
+        <input type="checkbox" [checked]="allRowsSelected" (change)="selectOut.emit(!allRowsSelected)" />
       </label>
       <span *ngIf="!column.headerTemplate" class="datatable-header-cell-wrapper">
         <span class="datatable-header-cell-label draggable" (click)="onSort()" [innerHTML]="name"> </span>
@@ -93,7 +93,7 @@ export class DataTableHeaderCellComponent {
   }
 
   @Output() sort: EventEmitter<any> = new EventEmitter();
-  @Output() select: EventEmitter<any> = new EventEmitter();
+  @Output() selectOut: EventEmitter<any> = new EventEmitter();
   @Output() columnContextmenu = new EventEmitter<{ event: MouseEvent; column: any }>(false);
 
   @HostBinding('class')
@@ -157,7 +157,7 @@ export class DataTableHeaderCellComponent {
   sortFn = this.onSort.bind(this);
   sortClass: string;
   sortDir: SortDirection;
-  selectFn = this.select.emit.bind(this.select);
+  selectFn = this.selectOut.emit.bind(this.selectOut);
 
   cellContext: any;
 

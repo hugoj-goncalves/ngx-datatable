@@ -20,7 +20,7 @@
     (sort)="onColumnSort($event)"
     (resize)="onColumnResize($event)"
     (reorder)="onColumnReorder($event)"
-    (select)="onHeaderSelect($event)"
+    (selectOut)="onHeaderSelect($event)"
     (columnContextmenu)="onColumnContextmenu($event)"
   >
   </datatable-header>
@@ -60,7 +60,7 @@
     (page)="onBodyPage($event)"
     (activate)="activate.emit($event)"
     (rowContextmenu)="onRowContextmenu($event)"
-    (select)="onBodySelect($event)"
+    (selectOut)="onBodySelect($event)"
     (scroll)="onBodyScroll($event)"
     (treeAction)="onTreeAction($event)"
   >
